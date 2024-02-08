@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 
+import usersRouter from "./routes/users-router";
+
 // porta do servidor
 const PORT = process.env.PORT ?? 4000;
 
@@ -17,8 +19,12 @@ app.get("/", (req, res) => {
 app.use(
   cors({
     origin: ["http://localhost:3000"],
-  }),
+  })
 );
+
+// Rotas
+app.use("/api", usersRouter);
+
 // Resposta padrão para quaisquer outras requisições:
 app.use((req, res) => {
   res.status(404);
